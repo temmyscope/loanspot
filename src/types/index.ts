@@ -1,9 +1,12 @@
 export type Computation = {
   needle: String,
-	haystack: Array<number|string>,
+	haystack: string,
+	sortedHaystack: Array<number|string>,
 	indexInSortedHaystack: Number,
 	indexInUnsortedHaystack: Number,
- 	sortTime: Number
+	timeTakenToSort: Number,
+	timeTakenToSearchUnsorted: Number,
+	timeTakenToSearchSorted: Number,
  	searchTime: Number,
  	createdAt: Date,
  	updatedAt: Date,

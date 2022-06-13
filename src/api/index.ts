@@ -7,47 +7,56 @@ import { Computation, CustomArray } from '../types/index';
 const router = express.Router();
 
 router.post(
-  '/api/search-and-sort', 
+  '/search-and-sort', 
   //[ body('haystack').is({}) ], 
   async(req: Request, res: Response) => {
-    let requestTimerStarts = Date.now();
+    const requestTimerStarts = performance.now();
 
     let needle: string = req.body.needle;
     let haystack: CustomArray = req.body.haystack;
 
-    let computationMap: Computation | null = await ComputationModel.findOne({
-      needle, haystack
-    });
-    if ( computationMap == null ) {
+    let computationMap: Computation|null = await ComputationModel.findOne({
+      needle: needle, haystack: JSON.stringify(haystack)
+    }).exec();
+    
+    if ( computationMap == null || !(computationMap instanceof ComputationModel) ) {
+      const initialComputationMap = { needle, haystack: JSON.stringify(req.body.haystack) };
       //search unsorted haystack, while keeping track of time taken
-      let startTime  = Date.now();
+      const unsortedStartTimeForSearch = performance.now();
       let indexInUnsorted = UnsortedSearchForItem(haystack, needle);
-      let totalTimeForSearchInUnsorted  = Date.now() - startTime;
+      let totalTimeForSearchInUnsorted  = performance.now() - unsortedStartTimeForSearch;
 
       //sort haystack, while keeping track of time taken
-      startTime  = Date.now();
+      const sortedStartTimeForSearch = performance.now();
       let sortedHaystack = SortData(haystack);
-      let totalTimeForSort  = Date.now() - startTime;
+      let totalTimeForSort  = performance.now() - sortedStartTimeForSearch;
 
       //search sorted haystack, while keeping track of time taken
-      startTime  = Date.now();
+      const startTime  = performance.now();
       let indexInSorted = SortedSearchForItem(sortedHaystack, needle);
-      let totalTimeForSearchInSorted  = Date.now() - startTime;
+      let totalTimeForSearchInSorted  = performance.now() - startTime;
 
-      computationMap = new ComputationModel({ 
+      computationMap = new ComputationModel({
+        ...initialComputationMap,
         timeTakenToSort: totalTimeForSort,
-        indexInUnsortedHaystack: indexInUnsorted, 
+        indexInSortedHaystack: indexInSorted,
         timeTakenToSearchSorted: totalTimeForSearchInSorted,
-        needle, haystack, indexInSortedHaystack: indexInSorted,
         timeTakenToSearchUnsorted: totalTimeForSearchInUnsorted,
+        sortedHaystack, indexInUnsortedHaystack: indexInUnsorted,
       });
       await computationMap?.save();
     }
-    let requestCompletedIn = Date.now() - requestTimerStarts;
+    let requestCompletedIn = performance.now() - requestTimerStarts;
 
     return res.status(200).json({ 
       success: true, message:"Computation Completed", data: {
-        ...computationMap, timeTaken: requestCompletedIn 
+        sortedHaystack: computationMap?.sortedHaystack,
+        requestTotalTimeTaken: `${requestCompletedIn} ms`,
+        timeTakenToSort: `${computationMap?.timeTakenToSort} ms`,
+        indexInSortedHaystack: computationMap?.indexInSortedHaystack,
+        indexInUnsortedHaystack: computationMap?.indexInUnsortedHaystack,
+        timeTakenToSearchSorted:  `${computationMap?.timeTakenToSearchSorted} ms`,
+        timeTakenToSearchUnsorted: `${computationMap?.timeTakenToSearchUnsorted} ms`,
       }
     });
 });

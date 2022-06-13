@@ -7,6 +7,10 @@ const ComputationSchema = new mongoose.Schema({
 		default: ''
 	},
 	haystack: {
+		type: String,
+		required: true
+	},
+	sortedHaystack: {
 		type: Array,
 		required: true,
 		default: []
