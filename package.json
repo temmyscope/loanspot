@@ -9,7 +9,7 @@
     "lint": "eslint src/**/*.ts --fix",
     "docker": "docker-compose up -d",
     "start:dev": "nodemon",
-    "build": "rimraf ./dist && tsc --project src/",
+    "build": "rimraf ./dist && tsc --project /",
     "test": "ENV_FILE=./.env.test jest --coverage",
     "test:watch": "jest --watch"
   },
@@ -46,7 +46,7 @@
     "eslint-plugin-import-helpers": "^1.1.0",
     "jest": "^28.1.1",
     "rimraf": "^3.0.2",
-    "superjest": "^0.1.0",
+    "supertest": "^6.2.3",
     "swagger-ui-express": "^4.4.0",
     "ts-jest": "^28.0.4",
     "ts-node-dev": "^1.0.0-pre.56",

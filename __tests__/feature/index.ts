@@ -18,7 +18,6 @@ describe('POST /search-and-sort', () => {
       .end((err, res) => {
         if (err) return err;
         console.log(res);
-
       });
   })
 
@@ -33,7 +32,9 @@ describe('POST /search-and-sort', () => {
         if (err) return err;
 
         expect(res.body).toMatchObject({
-          success: true, data: {}
+          success: true, data: {
+            "needle": "a", "haystack": [ 13, 2, 5, 'b', 3, 'a', 12, 9 ]
+          }
         });
       });
   })
