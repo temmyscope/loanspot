@@ -19,14 +19,18 @@ const ComputationSchema = new mongoose.Schema({
 		type: Number,
 		required: true
 	},
- 	sortTime: {
+ 	timeTakenToSort: {
  		type: Number,
  		required: true
 	},
- 	searchTime: {
+	timeTakenToSearchUnsorted: {
 		type: Number,
  		required: true
  	},
+	timeTakenToSearchSorted: {
+		type: Number,
+		required: true
+	},
  	createdAt: {
  		type: Date,
  		default: Date.now

@@ -4,14 +4,14 @@ const SortedSearchForItem = (data: Array<number|string>, item: string|number) =>
 
   while ( startIndex <= stopIndex ){
     let middleIndex = Math.floor(
-      startIndex+(stopIndex-startIndex)/2
+      (startIndex+(stopIndex-startIndex))/2
     )
     if (data[middleIndex] == item){
-      return middleIndex
+      return middleIndex;
     }else if( data[middleIndex] < item){
-      stopIndex = middleIndex+1
+      stopIndex = middleIndex+1;
     }else {
-      startIndex = middleIndex-1
+      startIndex = middleIndex-1;
     }
   }
   return -1

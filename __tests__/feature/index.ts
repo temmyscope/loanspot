@@ -18,20 +18,22 @@ describe('POST /search-and-sort', () => {
       .end((err, res) => {
         if (err) return err;
         console.log(res);
+
       });
   })
 
-  it('should return 200 & valid response if shortId param is set', async()=> {
+  it('should return 200 & valid response', async()=> {
     request(app)
-      .post(`/api/resolve`)
-      .send({ needle: "", haystack: [] })
-      .expect('Content-Type', /json/)
+      .post(`/api/search-and-sort`)
+      .send({ 
+        needle: "a", haystack: [13, 2, 5, 'b', 3, 'a', 12, 9 ] 
+      }).expect('Content-Type', /json/)
       .expect(200)
       .end((err, res) => {
         if (err) return err;
 
         expect(res.body).toMatchObject({
-          'success': true, data: { longUrl: '' }
+          success: true, data: {}
         });
       });
   })

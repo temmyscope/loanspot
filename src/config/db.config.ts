@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const dotenv = require('dotenv');
 
-dotenv.config({ path: '../../.env'});
+dotenv.config();
 
 export module Mongoose {
 

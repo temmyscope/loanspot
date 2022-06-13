@@ -9,7 +9,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "localhost:3000",
+  "host": "localhost",
   "basePath": "/",
   "tags": [
     {
@@ -44,13 +44,14 @@
             "required": true
           }
         ],
-        "tags": ["Sort", "Search", "Fetch Computation Info"],
+        "tags": ["Sort, Search and Fetch Computation Info"],
         "summary": "Get the computational details for the search and sort request",
         "responses": {
           "200": {
             "description": "OK",
+            "content": "application/json",
             "schema": {
-              "$ref": "#/definitions/haystack"
+              "$ref":"#/components/schemas/computationSchema"
             },
             "examples": {
               "data" : {}
@@ -62,10 +63,60 @@
   },
   "definitions": {
     "haystack": {
-      "type": "array"
+      "type": "array",
+      "items":{
+        "oneOf": [
+          { "type": "string" },
+          { "type": "integer" }
+        ]
+      }
     },
     "needle": {
       "type": "string"
+    }
+  },
+  "components": {
+    "schemas": {
+      "computationSchema": {
+        "type": "object",
+        "required": [
+          "success", "message"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data":{
+            "type": "object",
+            "properties": {
+              "needle": {
+                "type": "string"
+              },
+              "haystack": {
+                "$ref": "#/definitions/haystack"
+              },
+              "indexInSortedHaystack": {
+                "type": "integer"
+              },
+              "indexInUnsortedHaystack": {
+                "type": "integer"
+              },
+              "sortTime": {
+                "type": "integer"
+              },
+              "searchTime": {
+                "type": "integer"
+              },
+              "timeTaken": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

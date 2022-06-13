@@ -9,3 +9,5 @@ export type Computation = {
  	updatedAt: Date,
   save: () => any
 }
+
+export type CustomArray = Array<number|string>
