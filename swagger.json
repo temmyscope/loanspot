@@ -1,0 +1,71 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "TemmyScope Search And Sort Project",
+    "description": "My Array Sort and Search Computation Request API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "SearchAndSort",
+      "description": "API for sorting and searching"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/api/search-and-sort": {
+      "post": {
+        "description": "Sort and Search For Item within Array and Record Computation Details",
+        "parameters": [
+          {
+            "name": "haystack",
+            "description": "The Array to Sort and Search Through",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/haystack"
+            },
+            "required": true
+          },
+          {
+            "name": "needle",
+            "description": "The item you're searching the haystack for",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/needle"
+            },
+            "required": true
+          }
+        ],
+        "tags": ["Sort", "Search", "Fetch Computation Info"],
+        "summary": "Get the computational details for the search and sort request",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/haystack"
+            },
+            "examples": {
+              "data" : {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "haystack": {
+      "type": "array"
+    },
+    "needle": {
+      "type": "string"
+    }
+  }
+}

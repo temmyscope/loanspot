@@ -1,25 +1,25 @@
 import mongoose from '../config/db.config';
 
 const ComputationSchema = new mongoose.Schema({
-	searchItem: {
+	needle: {
 		type: String,
 		required: true,
 		default: ''
 	},
-	arrayData: {
+	haystack: {
 		type: Array,
 		required: true,
 		default: []
 	},
-	itemIndexInSortedData: {
+	indexInSortedHaystack: {
 		type: Number,
 		required: true
 	},
-	itemIndexInUnsortedData: {
+	indexInUnsortedHaystack: {
 		type: Number,
 		required: true
 	},
- 	sortingTime: {
+ 	sortTime: {
  		type: Number,
  		required: true
 	},
@@ -36,13 +36,13 @@ const ComputationSchema = new mongoose.Schema({
  		default: Date.now
  	}
 }, {
-	collection: 'UrlMap'
+	collection: 'ComputationStore'
 });
 
 ComputationSchema.index({ searchItem: 1 });
 ComputationSchema.index({ ArrayData: 1 });
 
-var ComputationModel: any = mongoose.model('UrlMap', ComputationSchema);
+const ComputationModel: any = mongoose.model('ComputationStore', ComputationSchema);
 
 
 export { ComputationModel };
