@@ -6,7 +6,6 @@
   "scripts": {
     "start": "tsc && node build/src/index.js",
     "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/index.ts",
-    "lint": "eslint src/**/*.ts --fix",
     "docker": "docker-compose up -d",
     "start:dev": "nodemon",
     "build": "rimraf ./build && tsc --project src/",
