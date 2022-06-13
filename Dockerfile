@@ -1,13 +1,12 @@
-FROM node:alpine
+FROM node:latest
 
 WORKDIR /usr/app
 
-COPY package*.json ./
-
+COPY . .
 RUN yarn
 
 COPY . .
 
-EXPOSE 3333
+CMD yarn dev --host=0.0.0.0 --port=$PORT
 
-CMD yarn dev
+EXPOSE $PORT

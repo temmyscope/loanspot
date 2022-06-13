@@ -3,12 +3,13 @@ import { UnsortedSearchForItem, SortedSearchForItem } from '../utils/search'
 import { SortData } from '../utils/sort'
 import { ComputationModel } from '../model/Computation';
 import { Computation, CustomArray } from '../types/index';
+import { body } from 'express-validator';
 
 const router = express.Router();
 
 router.post(
   '/search-and-sort', 
-  //[ body('haystack').is({}) ], 
+  [ body('haystack').isArray(), body('needle').isAlphanumeric() ], 
   async(req: Request, res: Response) => {
     const requestTimerStarts = performance.now();
 
