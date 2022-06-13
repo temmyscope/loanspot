@@ -9,7 +9,7 @@
     "lint": "eslint src/**/*.ts --fix",
     "docker": "docker-compose up -d",
     "start:dev": "nodemon",
-    "build": "rimraf ./dist && tsc --project /",
+    "build": "rimraf ./dist && tsc --project ./",
     "test": "ENV_FILE=./.env.test jest --coverage",
     "test:watch": "jest --watch"
   },
