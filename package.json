@@ -4,12 +4,12 @@
   "description": "A basic starter for an express.js API using Typescript. Forked from w3cj/express-api-starter",
   "main": "index.ts",
   "scripts": {
-    "start": "tsc && node dist/src/index.js",
+    "start": "tsc && node build/src/index.js",
     "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/index.ts",
     "lint": "eslint src/**/*.ts --fix",
     "docker": "docker-compose up -d",
     "start:dev": "nodemon",
-    "build": "rimraf ./dist && tsc --project ./",
+    "build": "rimraf ./build && tsc --project src/",
     "test": "ENV_FILE=./.env.test jest --coverage",
     "test:watch": "jest --watch"
   },
