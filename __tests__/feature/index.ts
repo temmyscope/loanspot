@@ -1,6 +1,8 @@
 import request from 'supertest'
 import { Express } from 'express-serve-static-core';
 import express from 'express';
+import mongoose from 'mongoose'
+import { exit } from 'process';
 
 let app: Express;
 
@@ -53,4 +55,8 @@ describe('POST /search-and-sort', () => {
       });
   })
 
+});
+
+afterAll(async () => {
+  mongoose.connection.close();
 });
