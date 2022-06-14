@@ -1,4 +1,4 @@
-# LoanSpot Task: Express API Starter - Typescript
+# Search and Sort: Express API - Typescript
 
 ## Setup
 
@@ -6,25 +6,17 @@
 npx create-express-api-typescript loanspot --yarn
 ```
 
-## Development
-
-```
-npm run dev
-```
-
-## Docker
-
-```
-npm run docker
-```
-
-## Build
-
-```
-npm run build
-```
-
 ## Explanation
+
+#### SortData function
+
+- Location ***(src/utils/sort.ts)***
+
+- This function uses the Quick sort algorithm to sort
+the list.
+- The time complexity for the function is ... 
+- The space complexity for the function is ...
+
 
 #### UnsortedSearchForItem function
 

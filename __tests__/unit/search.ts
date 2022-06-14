@@ -7,8 +7,7 @@ describe('get Random Item From Unsorted Array', () => {
     const response: number = UnsortedSearchForItem(sampleArray, 'a');
     expect(response).toBeLessThanOrEqual(8);
     expect(response).toBeGreaterThanOrEqual(5);
-    
-    expect(sampleArray[5]).toContain(response);
+    expect(sampleArray).toContain(sampleArray[response]);
   });
 });
 

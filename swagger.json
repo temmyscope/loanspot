@@ -92,12 +92,6 @@
           "data":{
             "type": "object",
             "properties": {
-              "needle": {
-                "type": "string"
-              },
-              "haystack": {
-                "$ref": "#/definitions/haystack"
-              },
               "indexInSortedHaystack": {
                 "type": "integer"
               },
