@@ -17,7 +17,8 @@ describe('get Random Item From Sorted Array', () => {
     let sortedData = SortData(sampleArray);
 
     const response: number = SortedSearchForItem(sampleArray, 2);
-    expect(sortedData).toContain('a');
+    let randomIndexFromArray = Math.floor(Math.random()*sampleArray.length);
+    expect(sortedData).toContain(sampleArray[randomIndexFromArray]);
     expect(response).toBeLessThanOrEqual(0);
     expect(sortedData[response]).toBe(sampleArray[1]);
     expect(sortedData).toHaveLength(sampleArray.length);

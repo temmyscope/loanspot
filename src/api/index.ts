@@ -8,9 +8,10 @@ import { body } from 'express-validator';
 const router = express.Router();
 
 router.post(
-  '/search-and-sort', 
-  [ body('haystack').isArray(), body('needle').isAlphanumeric() ], 
-  async(req: Request, res: Response) => {
+  '/search-and-sort', [ 
+    body('haystack').isArray(), body('needle').isAlphanumeric(),
+    body('haystack').isLength({ min: 1 })
+  ], async(req: Request, res: Response) => {
     const requestTimerStarts = performance.now();
 
     let needle: string = req.body.needle;
