@@ -60,6 +60,8 @@ where n is the length of the array.
 
 
 
+#### Notes
+
 ***In a more sophisticated solution, the ASCII index of each character could be used to rank the characters in an alphanumric Array/list, to determine which is greater when comparing a number and an alphabeth; since JavaScript doesn't take care of such cases internally.***
 
 ```js
@@ -67,3 +69,4 @@ where n is the length of the array.
 'a' < 1 //false
 'a' == 1 //false
 ```
+***Also the above ASCII-index approach only applies when comparing single characters not strings with length greater than 1***
