@@ -57,3 +57,13 @@ run a search/loop through, till the item is found.
 where n is the length of the array.
 
 - The space complexity for the function is O(1).
+
+
+
+***In a more sophisticated solution, the ASCII index of each character could be used to rank the characters in an alphanumric Array/list, to determine which is greater when comparing a number and an alphabeth; since JavaScript doesn't take care of such cases internally.***
+
+```js
+'a' > 1 //false
+'a' < 1 //false
+'a' == 1 //false
+```
